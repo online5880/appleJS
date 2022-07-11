@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bootstrap demo</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css">
+	<script
+			src="https://code.jquery.com/jquery-3.6.0.min.js"
+			integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="black-bg">
+	<div class="white-bg">
+		<h4>로그인하세요</h4>
+		<form action="success.html">
+			<div class="my-3">
+				<input type="text" class="form-control" id="email">
+			</div>
+			<div class="my-3">
+				<input type="password" class="form-control" id="pw">
+			</div>
+			<button type="submit" class="btn btn-primary" id="send">전송</button>
+			<button type="button" class="btn btn-danger" id="close">닫기</button>
+		</form>
+	</div>
+</div>
+
+<script>
+
+	/*$('.black-bg').on('click',function (){
+        $('.black-bg').removeClass('show-modal');
+	})*/
+
+	document.querySelector('.black-bg').addEventListener('click',function (e){
+
+        if(e.target === this){
+            document.querySelector('.black-bg').classList.remove('show-modal');
+            e.stopPropagation();
+        }
+	})
+
+	document.getElementById('email').addEventListener('input',function (){
+        console.log(123)
+	})
+
+	document.querySelector('form').addEventListener('submit',function (e){
+        let pw = document.getElementById('pw').value;
+        if(document.getElementById('email').value === ''){
+            e.preventDefault();
+            alert('ID 입력해주세요.');
+        }
+        else if(document.getElementById('pw').value === ''){
+            e.preventDefault();
+            alert('비밀번호 입력해주세요.');
+        }
+        else if(!/[A-Z]/.test(pw)){
+            e.preventDefault();
+            alert('영어 대문자 입력해주세요.')
+        }
+        else if(document.getElementById('pw').value.length < 6){
+            e.preventDefault();
+            alert('더 길게 입력해주세요');
+        }
+	})
+
+</script>
+
+<nav class="navbar navbar-light bg-light">
+	<div class="container-fluid">
+		<span class="navbar-brand" id="brand">MANE</span>
+		<span class="badge bg-dark">Dark 🔄</span>
+		<button class="navbar-toggler" type="button">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+	</div>
+</nav>
+
+<!--<div style="width: 200px; height: 500px;overflow-y:scroll;" id="lorem-bar">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium atque cum, cumque distinctio dolorum excepturi molestias nihil pariatur reiciendis repellat tempore temporibus velit! Atque deserunt eveniet ipsam molestias perferendis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquam dicta error esse similique totam, voluptatem? Atque aut, blanditiis commodi eius eligendi explicabo, quisquam reprehenderit sunt tempora totam, velit voluptatibus?</div>
+
+<script>
+
+	/*window.addEventListener('scroll',function (){
+        if(window.scrollY > 100){
+            document.getElementById('brand').style.fontSize = '10px';
+        }
+        else{
+            document.getElementById('brand').style.fontSize = '30px';
+        }
+	})*/
+
+	$(window).on('scroll',function (){
+        if($(window).scrollTop() > 100){
+            $('.navbar-brand').css('font-size','10px');
+        }
+        else{
+            $('.navbar-brand').css('font-size','30px');
+        }
+	})
+
+	document.getElementById('lorem-bar').addEventListener('scroll',function (){
+        let scrollValue = document.getElementById('lorem-bar').scrollTop;
+        let divHeight = document.getElementById('lorem-bar').scrollHeight;
+        let viewHeight = document.getElementById('lorem-bar').clientHeight;
+        if(scrollValue + viewHeight === divHeight){
+            alert('출력');
+        }
+	})
+
+
+</script>-->
+<ul class="list-group" id="test1">
+	<li class="list-group-item">An item</li>
+	<li class="list-group-item">A second item</li>
+	<li class="list-group-item">A third item</li>
+	<li class="list-group-item">A fourth item</li>
+	<li class="list-group-item">And a fifth one</li>
+</ul>
+
+<div class="main-bg">
+	<h4>Shirts on Sale</h4>
+	<button class="login-btn">로그인</button>
+</div>
+
+<div class="alert alert-danger" id="msg">
+	5초 이내 구매시 사운품 증정!
+</div>
+
+<div style="overflow: hidden;">
+	<div class="slide-container">
+		<div class="slide-box">
+			<img src="car1.png" alt=""></div>
+		<div class="slide-box">
+			<img src="car2.png" alt=""></div>
+		<div class="slide-box">
+			<img src="car3.png" alt=""></div>
+	</div>
+</div>
+
+<button class="slide-1">1</button>
+<button class="slide-2">2</button>
+<button class="slide-3">3</button>
+<button class="next">다음</button>
+<button class="before">이전</button>
+
+<script>
+	/*document.getElementsByClassName('slide-2')[0].addEventListener('click',function (){
+        document.getElementsByClassName('slide-container')[0].style.transform = 'translateX(-100vw)';
+	})*/
+	let curImg = 1;
+
+	$('.next').on('click',function (){
+		$('.slide-container').css('transform','translateX(-'+curImg+'00vw');
+        curImg++;
+	})
+
+    $('.before').on('click',function (){
+        if(curImg === 3){
+            curImg--;
+            $('.slide-container').css('transform','translateX(-100vw');
+        }else if(curImg===2){
+            curImg--;
+            $('.slide-container').css('transform','translateX(0vw');
+        }
+    })
+
+	$('.slide-1').on('click',function (){
+        $('.slide-container').css('transform','translateX(0vw');
+        curImg++;
+	})
+    $('.slide-2').on('click',function (){
+        $('.slide-container').css('transform','translateX(-100vw');
+        curImg++;
+    })
+    $('.slide-3').on('click',function (){
+        $('.slide-container').css('transform','translateX(-200vw');
+        curImg++;
+    })
+
+</script>
+
+<script>
+	let a = 5;
+	setInterval(function (){
+        if(a>0){
+            a--;
+            console.log(a);
+        }
+        document.getElementById('msg').innerHTML = a+'초 이내 구매시 사운품 증정!';
+        /*if(a===0){
+            document.getElementById('msg').style.display = 'none';
+        }*/
+	},1000);
+</script>
+
+<script>
+
+    let count = 1;
+
+    $('.badge').on('click',function (){
+        count++;
+        if(count%2 === 0){
+            $('.badge').html('Light 🔄')
+        }else{
+            $('.badge').html('Dark 🔄')
+        }
+    })
+
+	$('.login-btn').on('click',function (){
+        $('.black-bg').addClass('show-modal')
+	})
+
+	$('.btn-danger').on('click',function (){
+        $('.black-bg').removeClass('show-modal')
+	})
+
+</script>
+</body>
+</html>
