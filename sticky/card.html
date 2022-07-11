@@ -6,9 +6,47 @@
 	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="style.css">
+	<script
+			src="https://code.jquery.com/jquery-3.6.0.min.js"
+			integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			crossorigin="anonymous"></script>
 	<title>Document</title>
 </head>
 <body>
+
+<div class="card-background" style="">
+	<div class="card-box">
+		<img src="card1.png" alt="">
+	</div>
+	<div class="card-box">
+		<img src="card2.png" alt="">
+	</div>
+	<div class="card-box">
+		<img src="card3.png" alt="">
+	</div>
+</div>
+
+<script>
+	window.addEventListener('scroll',function (){
+
+        let scrollValue = window.scrollY;
+        function Remap (value,from1,to1,from2,to2) {
+            return (value - from1) / (to1 - from1) * (to2 - from2) + from2
+        }
+        let y1 = Remap(scrollValue,600,1300,1,0);
+        let s1 = Remap(scrollValue,600,1300,1,0.9);
+        let y2 = Remap(scrollValue,1300,2000,1,0);
+        let s2 = Remap(scrollValue,1300,2000,1,0.9);
+
+		document.querySelectorAll('.card-box')[0].style.opacity = `${y1}`;
+		document.querySelectorAll('.card-box')[0].style.transform = `scale(${s1})`;
+		document.querySelectorAll('.card-box')[1].style.opacity = `${y2}`;
+		document.querySelectorAll('.card-box')[1].style.width = `scale(${s2})`;
+
+        // 600 - 1370 첫번째
+		// 1370 - 2140
+    })
+</script>
 
 </body>
 </html>
