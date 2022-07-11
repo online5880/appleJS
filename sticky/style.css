@@ -1,0 +1,19 @@
+.grey{
+    background: lightgrey;
+    height: 2000px;
+    margin-top: 500px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.image{
+    width: 400px;
+    position: sticky;
+    top: 100px;
+    align-self: flex-start;
+}
+
+.text{
+    width: 300px;
+    margin-top: 300px;
+}
