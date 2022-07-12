@@ -132,11 +132,11 @@
 <div style="overflow: hidden;">
 	<div class="slide-container">
 		<div class="slide-box">
-			<img src="car1.png" alt=""></div>
+			<img src="car1.png" alt="" draggable="false"></div>
 		<div class="slide-box">
-			<img src="car2.png" alt=""></div>
+			<img src="car2.png" alt="" draggable="false"></div>
 		<div class="slide-box">
-			<img src="car3.png" alt=""></div>
+			<img src="car3.png" alt="" draggable="false"></div>
 	</div>
 </div>
 
@@ -147,6 +147,59 @@
 <button class="before">이전</button>
 
 <script>
+
+    document.querySelectorAll('.slide-box').forEach(function (i,idx,arr){
+
+    })
+
+    let mDown,mValue;
+    let pressed;
+    let slideBox = document.querySelectorAll('.slide-box');
+
+    slideBox[0].addEventListener('mousedown',function (e){
+        mDown = e.clientX;
+        pressed = true;
+    })
+
+    slideBox[0].addEventListener('mouseup',function (e){
+        pressed = false;
+        if(mValue < -100){
+            document.querySelector('.slide-container').style.transform = `translateX(-100vw)`;
+        }else{
+            document.querySelector('.slide-container').style.transform = `translateX(0vw)`;
+        }
+    })
+
+    slideBox[0].addEventListener('mousemove',function (e){
+        if(pressed){
+            mValue = e.clientX - mDown;
+            document.querySelector('.slide-container').style.transform = `translateX(${mValue}px)`;
+        }
+    })
+
+    slideBox[0].addEventListener('touchstart',function (e){
+        mDown = e.touches[0].clientX;
+        pressed = true;
+    })
+
+    slideBox[0].addEventListener('touchend',function (e){
+        pressed = false;
+        if(mValue < -100){
+            document.querySelector('.slide-container').style.transform = `translateX(-100vw)`;
+        }else{
+            document.querySelector('.slide-container').style.transform = `translateX(0vw)`;
+        }
+    })
+
+    slideBox[0].addEventListener('touchmove',function (e){
+        if(pressed){
+            mValue = e.touches[0].clientX - mDown;
+            document.querySelector('.slide-container').style.transform = `translateX(${mValue}px)`;
+        }
+    })
+</script>
+
+<!--<script>
 	/*document.getElementsByClassName('slide-2')[0].addEventListener('click',function (){
         document.getElementsByClassName('slide-container')[0].style.transform = 'translateX(-100vw)';
 	})*/
@@ -159,10 +212,10 @@
 
     $('.before').on('click',function (){
         if(curImg === 3){
-            curImg--;
+            curImg&#45;&#45;;
             $('.slide-container').css('transform','translateX(-100vw');
         }else if(curImg===2){
-            curImg--;
+            curImg&#45;&#45;;
             $('.slide-container').css('transform','translateX(0vw');
         }
     })
@@ -180,14 +233,13 @@
         curImg++;
     })
 
-</script>
+</script>-->
 
 <script>
 	let a = 5;
 	setInterval(function (){
         if(a>0){
             a--;
-            console.log(a);
         }
         document.getElementById('msg').innerHTML = a+'초 이내 구매시 사운품 증정!';
         /*if(a===0){
